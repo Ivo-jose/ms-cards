@@ -1,4 +1,4 @@
-package br.com.ivogoncalves;
+package br.com.ivogoncalves.ms_cards;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
