@@ -26,10 +26,9 @@ public class CardService {
 									new ResourceNotFoundException("Resource not found! ID: " + id));
 	}
 	
-	public List<Card> getLessThanOrEqualIncome(String value) {
+	public List<Card> getLessThanOrEqualIncome(BigDecimal value) {
 		log.info("Find all cards income less than or equal to {}", value);
-		BigDecimal income = new BigDecimal(value);
-		return cardRepository.findByIncomeLessThanEqual(income);
+		return cardRepository.findByIncomeLessThanEqual(value);
 	}
 	
 	@Transactional

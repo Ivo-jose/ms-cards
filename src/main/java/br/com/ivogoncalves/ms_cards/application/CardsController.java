@@ -1,5 +1,6 @@
 package br.com.ivogoncalves.ms_cards.application;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,10 +36,10 @@ public class CardsController {
 	}
 	
 	@GetMapping(params = "income")
-	public ResponseEntity<List<CardSaveRequest>> getAllCardsWithIncomeLessThanEqual(@RequestParam String income) {
+	public ResponseEntity<List<CardSaveRequest>> getAllCardsWithIncomeLessThanEqual(@RequestParam BigDecimal income) {
 		List<Card> entities = cardService.getLessThanOrEqualIncome(income);
 		List<CardSaveRequest> dtos = entities.stream().map(e -> 
-							new CardSaveRequest(e.getId(), e.getName(), e.getFlag(), e.getIncome(), e.getLimit()))
+							new CardSaveRequest(e.getId(), e.getName(), e.getFlag(), e.getIncome(), e.getBasicLimit()))
 												.collect(Collectors.toList());
 		return  ResponseEntity.ok().body(dtos);
 	}
@@ -61,6 +62,6 @@ public class CardsController {
 								.toUri();
 		return ResponseEntity.created(headerLocation).body(
 					new CardSaveRequest(persisted.getId(), persisted.getName(), persisted.getFlag(), 
-														persisted.getIncome(), persisted.getLimit()));
+														persisted.getIncome(), persisted.getBasicLimit()));
 	}	
 }

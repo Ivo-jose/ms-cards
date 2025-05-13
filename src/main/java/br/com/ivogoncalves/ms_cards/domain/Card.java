@@ -27,14 +27,14 @@ public class Card {
 	private CardFlag flag;
 	@Column
 	private BigDecimal income;
-	@Column(name = "basicLimit")
-	private BigDecimal limit;
+	@Column
+	private BigDecimal basicLimit;
 	
 	
-	public Card(String name, CardFlag flag, BigDecimal income, BigDecimal limit) {
+	public Card(String name, CardFlag flag, BigDecimal income, BigDecimal basicLimit) {
 		this.name = name;
 		this.flag = flag;
 		this.income = income;
-		this.limit = limit;
+		this.basicLimit = basicLimit;
 	}
 }

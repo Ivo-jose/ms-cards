@@ -20,9 +20,9 @@ public class CardSaveRequest implements Serializable {
 	private String name;
 	private CardFlag flag;
 	private BigDecimal income;
-	private BigDecimal limit;
+	private BigDecimal basicLimit;
 	
 	public Card toModel() {
-		return new Card(name, flag, income, limit);
+		return new Card(name, flag, income, basicLimit);
 	}
 }
