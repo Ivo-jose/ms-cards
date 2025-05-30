@@ -32,5 +32,5 @@ public class CustomerCard implements Serializable {
 	@JoinColumn(name = "id_card")
 	private Card card;
 	@Column(name = "limitReleased")
-	private BigDecimal limit;
+	private BigDecimal limitReleased;
 }

@@ -19,9 +19,11 @@ import br.com.ivogoncalves.ms_cards.application.representation.CardSaveRequest;
 import br.com.ivogoncalves.ms_cards.application.representation.CustomerCardResponse;
 import br.com.ivogoncalves.ms_cards.domain.Card;
 import br.com.ivogoncalves.ms_cards.domain.CustomerCard;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/cards")
+@Slf4j
 public class CardsController {
 	
 	@Autowired
@@ -47,7 +49,7 @@ public class CardsController {
 	@GetMapping(params = "cpf")
 	public ResponseEntity<List<CustomerCardResponse>> getCardsByCustomer(@RequestParam String cpf) {
 		 List<CustomerCard> entities = customerCardService.cardsListByCpf(cpf);
-		 var dtos = entities.stream().map(CustomerCardResponse::fromModel).collect(Collectors.toList());
+		 List<CustomerCardResponse> dtos = entities.stream().map(CustomerCardResponse::fromModel).collect(Collectors.toList());
 		return ResponseEntity.ok().body(dtos);
 	}
 	
