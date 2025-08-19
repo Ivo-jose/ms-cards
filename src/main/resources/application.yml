@@ -3,6 +3,15 @@ server:
 spring:
   application:
     name: ms-cards
+  security:
+    user:
+      name: actuator
+      password: actuator123
+      roles: ACTUATOR
+    oauth2:
+     resourceserver:
+       jwt:
+         issuer-uri: http://localhost:8081/realms/mscourserealm
   datasource:
     url: jdbc:h2:mem:cardDB
     driver-class-name: org.h2.Driver
@@ -15,16 +24,31 @@ spring:
   jpa:
     open-in-view: true
   rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
+    host: ${RABBITMQ_HOST:192.168.0.26}
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USER:root}
     password: ${RABBITMQ_PASSWORD:rabbitmq12345}
 eureka:
   client:
     service-url:
-      defaultZone: http://${EUREKA_USER:adminEureka}:${EUREKA_PASSWORD:12345}@${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+      defaultZone: http://${EUREKA_USER:adminEureka}:${EUREKA_PASSWORD:12345}@${EUREKA_HOST:192.168.0.26}:${EUREKA_PORT:8761}/eureka/
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}	
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - info
+        - health
+        - metrics
+        - logfile
+  endpoint:
+    health:
+      show-details: when-authorized
+logging:
+  file:
+    name: ./logs/ms-cards.log
 mq:
   queues:
     card-issuance: card-issuance

@@ -34,7 +34,7 @@ public class CardIssuanceConsumer {
 			customer.setLimitReleased(data.getReleasedLimit());
 			customerCardService.save(customer);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error processing card issuance request: {}", e.getMessage());
 		}
 			
 	}
