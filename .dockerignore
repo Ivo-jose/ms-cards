@@ -1,0 +1,34 @@
+# Ignorar diretórios de build
+target/
+build/
+
+# Ignorar dependências locais
+.mvn/
+.mvnw
+mvnw.cmd
+
+# Ignorar VCS
+.git
+.gitignore
+.gitattributes
+
+# Ignorar IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+*.project
+*.classpath
+*.settings/
+
+# Ignorar SO
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.bak
